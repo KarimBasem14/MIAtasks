@@ -1,0 +1,18 @@
+From the graph : y=1.4sin(π/2 x)
+
+1) Since the time of the signal is 2 seconds and the sampling type is 0.25 second then we would have 2/0.25 = 8 samples
+since it is a 3-bit encoder then we have 2^3 levels each represented with a 3 digit binary code
+
+
+let's put the samples in a list : [0.25,0.5,0.75,1,1.25,1.5,1.75,2] (that's time)
+each corresponding to a voltage of : [0.9899494936611664, 1.4, 0.9899494936611666, 1.7145055188062944e-16, -0.9899494936611664, -1.4, -0.9899494936611667, 0]
+since the maximum voltage is 1.4 and we have 8 levels then each level can handle a volt range of 1.4/8 = 0.175
+0.00 - 0.175 V : 000
+0.175 - 0.35 V : 001
+0.35 - 0.525 V : 010
+0.525 - 0.7 V : 011
+0.7 - 0.875 V : 100
+0.875 - 1.05 V : 101
+1.05 - 1.225 V : 110
+1.225 - 1.4 V : 111
+Now we can convert the samples list into binary code: [001,010,100,101,

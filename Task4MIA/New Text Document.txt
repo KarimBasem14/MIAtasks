@@ -1,0 +1,28 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+import numpy as np
+df = pd.read_csv("./Weather_Dataset.csv") # Load the data
+# Convert the 'Formatted Date' column to datetime format
+
+df['time'] = pd.to_datetime(df['Formatted Date'])
+
+# Plot the data
+plt.figure(figsize=(12, 6))
+sns.lineplot(x='Formatted Date', y='Temperature (C)', data=df)
+plt.title('Temperature vs Time')
+plt.xlabel('Time')
+plt.ylabel('Temperature (°C)')
+# Improve formatting of the x-axis for better readability
+plt.gca().xaxis.set_major_formatter(plt.matplotlib.dates.DateFormatter(r'%Y-%m-%d %H:%M'))
+plt.gca().xaxis.set_major_locator(plt.matplotlib.dates.HourLocator(interval=1))
+plt.gcf().autofmt_xdate()  # Rotation and alignment of the x-axis labels
+
+# Set y-axis range if necessary (optional, depending on your data)
+plt.ylim(min(df['Temperature (C)']) - 1, max(df['Temperature (C)']) + 1)
+
+# Ensure layout is tight so labels fit
+plt.tight_layout()
+
+# Show the plot
+plt.show()
